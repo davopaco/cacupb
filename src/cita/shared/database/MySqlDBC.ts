@@ -9,7 +9,7 @@ export default class MySqlDBC {
     this.mySqlConnectionConfig = mySqlConnectionConfig;
   }
 
-  public async connect() {
+  async connect() {
     this.connection = mysql.createConnection(this.mySqlConnectionConfig);
     this.connection.connect((error) => {
       if (error) {
@@ -20,7 +20,7 @@ export default class MySqlDBC {
     });
   }
 
-  public async query(sql: string, values?: any[]) {
+  async query(sql: string, values?: any[]) {
     if (!this.connection) {
       throw new Error("Connection is not established");
     }
@@ -34,7 +34,7 @@ export default class MySqlDBC {
     });
   }
 
-  public async close() {
+  async close() {
     if (!this.connection) {
       throw new Error("Connection is not established");
     }
@@ -45,5 +45,12 @@ export default class MySqlDBC {
       }
       console.log("Connection closed");
     });
+  }
+
+  public async setQuery(sql: string, values?: any[]) {
+    await this.connect();
+    const result = await this.query(sql, values);
+    await this.close();
+    return result;
   }
 }
