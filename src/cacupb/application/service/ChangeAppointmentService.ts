@@ -1,12 +1,12 @@
 import Appointment from "../../domain/model/appointment/Appointment";
-import Customer from "../../domain/model/customer/Customer";
-import CustomerAppointment from "../../domain/model/web/CustomerAppointment";
 import AppointmentRepositoryPort from "../../domain/port/driven/repository/AppointmentRepositoryPort";
 import CustomerRepositoryPort from "../../domain/port/driven/repository/CustomerRepositoryPort";
 import Time from "../../domain/model/time/Time";
 import OfficeRepositoryPort from "../../domain/port/driven/repository/OfficeRepositoryPort";
 import { getAppointmentType } from "../../helper/GetAppointmentType";
 import ChangeAppointmentServicePort from "../../domain/port/driver/service/ChangeAppointmentServicePort";
+import CustomerAppointmentId from "../../domain/model/web/CustomerAppointmentId";
+import Customer from "../../domain/model/customer/Customer";
 
 export default class ChangeAppointmentService
   implements ChangeAppointmentServicePort
@@ -18,24 +18,34 @@ export default class ChangeAppointmentService
   ) {}
 
   public async changeAppointmentForCustomer(
-    customerAppointment: CustomerAppointment
+    customerAppointmentId: CustomerAppointmentId
   ): Promise<boolean> {
     try {
-      const customer = await this.customerRepository.getById(
-        parseInt(customerAppointment.customerId)
+      const customer = new Customer(
+        customerAppointmentId.name,
+        customerAppointmentId.lastName,
+        parseInt(customerAppointmentId.customerId),
+        customerAppointmentId.address,
+        customerAppointmentId.birthDate
       );
 
+      const customerUpdated = await this.customerRepository.update(customer);
+
+      if (!customerUpdated) {
+        return false;
+      }
+
       const office = await this.officeRepository.getById(
-        customerAppointment.place
+        customerAppointmentId.place
       );
 
       const appointment = new Appointment(
         customer,
-        customerAppointment.date,
-        new Time(customerAppointment.time),
-        getAppointmentType(customerAppointment.type),
-        0,
-        customerAppointment.description,
+        customerAppointmentId.date,
+        new Time(customerAppointmentId.time),
+        getAppointmentType(customerAppointmentId.type),
+        parseInt(customerAppointmentId.id),
+        customerAppointmentId.description,
         0,
         office
       );

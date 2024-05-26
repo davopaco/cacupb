@@ -1,7 +1,7 @@
-import CustomerAppointment from "../../../model/web/CustomerAppointment";
+import CustomerAppointmentId from "../../../model/web/CustomerAppointmentId";
 
 export default interface ChangeAppointmentServicePort {
   changeAppointmentForCustomer(
-    customerAppointment: CustomerAppointment
+    customerAppointmentId: CustomerAppointmentId
   ): Promise<boolean>;
 }

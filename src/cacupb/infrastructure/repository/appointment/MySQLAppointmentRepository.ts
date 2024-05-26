@@ -62,7 +62,7 @@ export default class AppointmentRepository
           appointment.getDescription(),
           officeId,
           appointment.getTypeService(),
-          appointment.getTime(),
+          appointment.getTime().toString(),
           customerId,
           appointment.getStatus(),
           appointment.getId(),

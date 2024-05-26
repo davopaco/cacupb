@@ -1,4 +1,4 @@
-import CustomerAppointment from "../../domain/model/web/CustomerAppointment";
+import CustomerAppointmentId from "../../domain/model/web/CustomerAppointmentId";
 import ChangeAppointmentServicePort from "../../domain/port/driver/service/ChangeAppointmentServicePort";
 import ChangeAppointmentUseCasePort from "../../domain/port/driver/usecase/ChangeAppointmentUseCasePort";
 
@@ -10,10 +10,10 @@ export default class ChangeAppointmentUseCase
   ) {}
 
   public async execute(
-    customerAppointment: CustomerAppointment
+    customerAppointmentId: CustomerAppointmentId
   ): Promise<boolean> {
     return await this.changeAppointmentService.changeAppointmentForCustomer(
-      customerAppointment
+      customerAppointmentId
     );
   }
 }
