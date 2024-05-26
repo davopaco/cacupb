@@ -18,7 +18,7 @@ import MySQLCustomerRepository from "../repository/customer/MySQLCustomerReposit
 import MySQLOfficesRepository from "../repository/offices/MySQLOfficeRepository";
 
 export default class AppointmentFactory {
-  public async createRouter(): Promise<ExpressRouter> {
+  public createRouter(): ExpressRouter {
     //MySQL Connection
     const mySqlConnectionConfig = {
       host: "localhost",
