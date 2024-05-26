@@ -1,3 +1,4 @@
+import { ResultSetHeader } from "mysql2";
 import Sedes from "../../../domain/model/database/Sedes";
 import NullOffice from "../../../domain/model/office/NullOffice";
 import Office from "../../../domain/model/office/Office";
@@ -8,46 +9,47 @@ export default class MySQLOfficesRepository implements OfficeRepositoryPort {
   constructor(private readonly mySqlDBC: MySqlDBC) {}
 
   public async create(office: Office): Promise<boolean> {
-    const result = await this.mySqlDBC.query<number>(
+    const [result] = await this.mySqlDBC.query<ResultSetHeader>(
       "INSERT INTO SEDES (NOMBRE) VALUES (?)",
       [office.getName()]
     );
-    if (!result) {
+    if (result.affectedRows === 0) {
       return false;
     }
     return true;
   }
 
   public async delete(id: number): Promise<boolean> {
-    const result = await this.mySqlDBC.query("DELETE FROM SEDES WHERE ID = ?", [
-      id,
-    ]);
-    if (!result) {
+    const [result] = await this.mySqlDBC.query<ResultSetHeader>(
+      "DELETE FROM SEDES WHERE ID = ?",
+      [id]
+    );
+    if (result.affectedRows === 0) {
       return false;
     }
     return true;
   }
 
   public async update(office: Office): Promise<boolean> {
-    const result = await this.mySqlDBC.query<number>(
+    const [result] = await this.mySqlDBC.query<ResultSetHeader>(
       "UPDATE SEDES SET NOMBRE = ? WHERE ID = ?",
       [office.getName(), office.getId()]
     );
-    if (!result) {
+    if (result.affectedRows === 0) {
       return false;
     }
     return true;
   }
 
   public async getById(id: number): Promise<Office> {
-    const result = (await this.mySqlDBC.query<Sedes>(
+    const [result] = await this.mySqlDBC.query<Sedes>(
       "SELECT * FROM SEDES WHERE ID = ?",
       [id]
-    )) as Sedes[];
-    if (!result) {
+    );
+    if (result === undefined) {
       return new NullOffice();
     }
-    return new Office(result[0].NOMBRE, result[0].ID);
+    return new Office(result.NOMBRE, result.ID);
   }
 
   public async getAll(): Promise<Office[]> {

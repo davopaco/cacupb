@@ -63,7 +63,7 @@ describe("MySQLAppointmentRepository", () => {
   });
   describe("getById", () => {
     it("should get an appointment by id", async () => {
-      const appointment = await appointmentRepository.getById(7);
+      const appointment = await appointmentRepository.getById(1);
       expect(appointment).toBeInstanceOf(AbstractAppointment);
     });
   });

@@ -21,7 +21,7 @@ export default class AppointmentRepository
   public async create(appointment: Appointment): Promise<boolean> {
     const officeId = appointment.getOffice().getId();
     const customerId = appointment.getCustomer().getId();
-    const result = await this.mySqlDBC.query<ResultSetHeader>(
+    const [result] = await this.mySqlDBC.query<ResultSetHeader>(
       "INSERT INTO CITAS (FECHA, DESCRIPCION, SEDES_ID, TIPO, HORA, CLIENTES_ID, ESTADO) VALUES (?, ?, ?, ?, ?, ?, ?)",
       [
         appointment.getDate(),
@@ -33,19 +33,18 @@ export default class AppointmentRepository
         appointment.getStatus(),
       ]
     );
-    console.log();
-    if (result === undefined) {
+    if (result.affectedRows === 0) {
       return false;
     }
     return true;
   }
 
   public async delete(id: number): Promise<boolean> {
-    const result = await this.mySqlDBC.query<number>(
+    const [result] = await this.mySqlDBC.query<ResultSetHeader>(
       "DELETE FROM CITAS WHERE ID = ?",
       [id]
     );
-    if (!result) {
+    if (result.affectedRows === 0) {
       console.error("Error deleting the appointment from the database");
       return false;
     }
@@ -56,7 +55,7 @@ export default class AppointmentRepository
     if (appointment.getId() !== undefined) {
       const officeId = appointment.getOffice().getId();
       const customerId = appointment.getCustomer().getId();
-      const result = await this.mySqlDBC.query<Citas>(
+      const [result] = await this.mySqlDBC.query<ResultSetHeader>(
         "UPDATE CITAS SET FECHA = ?, DESCRIPCION = ?, SEDES_ID = ?, TIPO = ?, HORA = ?, CLIENTES_ID = ?, ESTADO = ? WHERE ID = ?",
         [
           appointment.getDate(),
@@ -69,7 +68,7 @@ export default class AppointmentRepository
           appointment.getId(),
         ]
       );
-      if (!result) {
+      if (result.affectedRows === 0) {
         console.error("Error updating the appointment from the database");
         return false;
       }
@@ -79,9 +78,7 @@ export default class AppointmentRepository
   }
 
   public async getAll(): Promise<Appointment[]> {
-    const citas = (await this.mySqlDBC.query<Citas>(
-      "SELECT * FROM CITAS"
-    )) as Citas[];
+    const citas = await this.mySqlDBC.query<Citas>("SELECT * FROM CITAS");
     const clientes = await this.mySQLCustomerRepository.getAll();
     const sedes = await this.mySQLOfficesRepository.getAll();
     const appointments: Appointment[] = [];
@@ -118,6 +115,9 @@ export default class AppointmentRepository
       "SELECT * FROM CITAS WHERE ID = ?",
       [id]
     );
+    if (citas === undefined) {
+      return new NullAppointment();
+    }
     const customer = await this.mySQLCustomerRepository.getById(
       citas.CLIENTES_ID
     );
