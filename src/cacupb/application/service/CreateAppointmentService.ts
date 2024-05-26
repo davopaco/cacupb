@@ -38,7 +38,6 @@ export default class CreateAppointmentService
 
     if (!customerExistence) {
       const createCustomer = await this.customerRepository.create(customer);
-      console.log(createCustomer);
       if (!createCustomer) {
         return false;
       }
