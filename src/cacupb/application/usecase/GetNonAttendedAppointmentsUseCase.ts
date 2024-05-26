@@ -1,7 +1,10 @@
 import GetAppointmentsServicePort from "../../domain/port/driver/service/GetAppointmentsServicePort";
+import GetNonAttendedAppointmentsUseCasePort from "../../domain/port/driver/usecase/GetNonAttendedAppointmentsUseCasePort";
 import PDFCreator from "../../helper/PDFCreator";
 
-export default class GetNonAttendedAppointmentsUseCase {
+export default class GetNonAttendedAppointmentsUseCase
+  implements GetNonAttendedAppointmentsUseCasePort
+{
   constructor(
     private readonly getAppointmentsService: GetAppointmentsServicePort,
     private readonly pdfCreator: PDFCreator
