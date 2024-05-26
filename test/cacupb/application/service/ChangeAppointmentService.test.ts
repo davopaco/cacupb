@@ -3,8 +3,8 @@ import CustomerAppointmentId from "../../../../src/cacupb/domain/model/web/Custo
 import MySQLAppointmentRepository from "../../../../src/cacupb/infrastructure/repository/appointment/MySQLAppointmentRepository";
 import MySQLCustomerRepository from "../../../../src/cacupb/infrastructure/repository/customer/MySQLCustomerRepository";
 import MySQLOfficesRepository from "../../../../src/cacupb/infrastructure/repository/offices/MySQLOfficeRepository";
-import MySqlDBC from "../../../../src/cacupb/shared/database/MySqlDBC";
-import MySqlConnectionConfig from "../../../../src/cacupb/shared/database/types/ConnectionInterface";
+import MySqlDBC from "../../../../src/cacupb/util/database/MySqlDBC";
+import MySqlConnectionConfig from "../../../../src/cacupb/util/database/types/ConnectionInterface";
 
 describe("ChangeAppointmentService", () => {
   let mySqlConnectionConfig: MySqlConnectionConfig;

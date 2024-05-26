@@ -6,8 +6,9 @@ import AppointmentRepositoryPort from "../../../domain/port/driven/repository/Ap
 import CustomerRepositoryPort from "../../../domain/port/driven/repository/CustomerRepositoryPort";
 import OfficeRepositoryPort from "../../../domain/port/driven/repository/OfficeRepositoryPort";
 import Time from "../../../domain/model/time/Time";
-import MySqlDBC from "../../../shared/database/MySqlDBC";
+import MySqlDBC from "../../../util/database/MySqlDBC";
 import { ResultSetHeader } from "mysql2";
+import { getAppointmentType } from "../../../helper/GetAppointmentType";
 
 export default class AppointmentRepository
   implements AppointmentRepositoryPort
@@ -138,5 +139,39 @@ export default class AppointmentRepository
       );
     }
     return new NullAppointment();
+  }
+
+  public async getByStatus(status: number): Promise<Appointment[]> {
+    const citas = await this.mySqlDBC.query<Citas>(
+      "SELECT * FROM CITAS WHERE ESTADO = ?",
+      [status]
+    );
+    const clientes = await this.mySQLCustomerRepository.getAll();
+    const sedes = await this.mySQLOfficesRepository.getAll();
+    const appointments: Appointment[] = [];
+    citas.forEach((cita) => {
+      const customer = clientes.find(
+        (cliente) => cliente.getId() === cita.CLIENTES_ID
+      );
+      const office = sedes.find((sede) => sede.getId() === cita.SEDES_ID);
+      const time = new Time(cita.HORA as string);
+      if (customer && office) {
+        appointments.push(
+          new Appointment(
+            customer,
+            cita.FECHA,
+            time,
+            getAppointmentType(cita.TIPO),
+            cita.ID,
+            cita.DESCRIPCION,
+            cita.ESTADO,
+            office
+          )
+        );
+      } else {
+        appointments.push(new NullAppointment());
+      }
+    });
+    return appointments;
   }
 }

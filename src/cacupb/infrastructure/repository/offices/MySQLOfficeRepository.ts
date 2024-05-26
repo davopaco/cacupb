@@ -3,7 +3,7 @@ import Sedes from "../../../domain/model/database/Sedes";
 import NullOffice from "../../../domain/model/office/NullOffice";
 import Office from "../../../domain/model/office/Office";
 import OfficeRepositoryPort from "../../../domain/port/driven/repository/OfficeRepositoryPort";
-import MySqlDBC from "../../../shared/database/MySqlDBC";
+import MySqlDBC from "../../../util/database/MySqlDBC";
 
 export default class MySQLOfficesRepository implements OfficeRepositoryPort {
   constructor(private readonly mySqlDBC: MySqlDBC) {}
@@ -53,10 +53,7 @@ export default class MySQLOfficesRepository implements OfficeRepositoryPort {
   }
 
   public async getAll(): Promise<Office[]> {
-    const result = (await this.mySqlDBC.query<Sedes>(
-      "SELECT * FROM SEDES",
-      []
-    )) as Sedes[];
+    const result = await this.mySqlDBC.query<Sedes>("SELECT * FROM SEDES", []);
     if (result.length === 0) {
       return [];
     }

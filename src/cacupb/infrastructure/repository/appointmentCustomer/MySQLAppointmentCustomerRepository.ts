@@ -1,5 +1,5 @@
 import AppointmentCustomerRepositoryPort from "../../../domain/port/driven/repository/AppointmentCustomerRepositoryPort";
-import MySqlDBC from "../../../shared/database/MySqlDBC";
+import MySqlDBC from "../../../util/database/MySqlDBC";
 
 interface ClienteCita {
   customer_id: number;

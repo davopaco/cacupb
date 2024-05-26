@@ -3,7 +3,7 @@ import Customer from "../../../domain/model/customer/Customer";
 import NullCustomer from "../../../domain/model/customer/NullCustomer";
 import Clientes from "../../../domain/model/database/Clientes";
 import CustomerRepositoryPort from "../../../domain/port/driven/repository/CustomerRepositoryPort";
-import MySqlDBC from "../../../shared/database/MySqlDBC";
+import MySqlDBC from "../../../util/database/MySqlDBC";
 
 export default class MySQLCustomerRepository implements CustomerRepositoryPort {
   constructor(private readonly mySqlDBC: MySqlDBC) {}
@@ -76,9 +76,9 @@ export default class MySQLCustomerRepository implements CustomerRepositoryPort {
     return true;
   }
   public async getAll(): Promise<Customer[]> {
-    const results = (await this.mySqlDBC.query<Clientes>(
+    const results = await this.mySqlDBC.query<Clientes>(
       "SELECT * FROM CLIENTES"
-    )) as Clientes[];
+    );
     const customers = results.map((cliente) => {
       if (!cliente) {
         return new NullCustomer();
