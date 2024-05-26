@@ -4,4 +4,5 @@ export default interface ChangeAppointmentServicePort {
   changeAppointmentForCustomer(
     customerAppointmentId: CustomerAppointmentId
   ): Promise<boolean>;
+  cancelAppointmentForCustomer(id: number): Promise<boolean>;
 }

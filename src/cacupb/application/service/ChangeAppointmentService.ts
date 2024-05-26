@@ -56,4 +56,13 @@ export default class ChangeAppointmentService
       return false;
     }
   }
+
+  public async cancelAppointmentForCustomer(id: number): Promise<boolean> {
+    try {
+      return await this.appointmentRepository.delete(id);
+    } catch (error) {
+      console.error("Error while canceling the appointment", error);
+      return false;
+    }
+  }
 }
