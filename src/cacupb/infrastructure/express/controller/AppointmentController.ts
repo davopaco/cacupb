@@ -4,13 +4,15 @@ import CreateAppointmentUseCasePort from "../../../domain/port/driver/usecase/Cr
 import GetNonAttendedAppointmentsUseCasePort from "../../../domain/port/driver/usecase/GetNonAttendedAppointmentsUseCasePort";
 import ValidateIdsChangeAppointmentUseCasePort from "../../../domain/port/driver/usecase/ValidateIdsChangeUseCasePort";
 import CustomerAppointment from "../../../domain/model/web/CustomerAppointment";
+import ChangeAppointmentUseCasePort from "../../../domain/port/driver/usecase/ChangeAppointmentUseCasePort";
 
-export default class CACUPBController {
+export default class AppointmentController {
   constructor(
     private readonly createAppointmentUseCase: CreateAppointmentUseCasePort,
     private readonly cancelAppointmentUseCase: CancelAppointmentUseCasePort,
     private readonly getNonAttendedAppointmentsUseCase: GetNonAttendedAppointmentsUseCasePort,
-    private readonly validateIdsChangeAppointmentUseCase: ValidateIdsChangeAppointmentUseCasePort
+    private readonly validateIdsChangeAppointmentUseCase: ValidateIdsChangeAppointmentUseCasePort,
+    private readonly changeAppointmentUseCase: ChangeAppointmentUseCasePort
   ) {}
 
   public async createAppointment(req: Request, res: Response): Promise<void> {
@@ -66,5 +68,16 @@ export default class CACUPBController {
       return;
     }
     res.status(200).json(isValid);
+  }
+
+  public async changeAppointment(req: Request, res: Response): Promise<void> {
+    const appointmentChanged = await this.changeAppointmentUseCase.execute(
+      req.body as CustomerAppointment
+    );
+    if (appointmentChanged === false) {
+      res.status(400).json({ message: "Error changing the appointment" });
+      return;
+    }
+    res.status(200).json({ message: "Appointment changed" });
   }
 }
