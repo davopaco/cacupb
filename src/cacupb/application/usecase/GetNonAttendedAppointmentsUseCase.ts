@@ -9,10 +9,10 @@ export default class GetNonAttendedAppointmentsUseCase
     private readonly getAppointmentsService: GetAppointmentsServicePort,
     private readonly pdfCreator: PDFCreator
   ) {}
-  public async execute(status: string): Promise<Buffer> {
+  public async execute(): Promise<Buffer> {
     const appointments =
-      await this.getAppointmentsService.getAppointmentByNonAttended(status);
-    const pdf = this.pdfCreator.createPDF(appointments);
-    return Buffer.from(JSON.stringify(pdf));
+      await this.getAppointmentsService.getAppointmentByNonAttended("1");
+    const pdf = await this.pdfCreator.createPDF(appointments);
+    return Buffer.from(pdf);
   }
 }

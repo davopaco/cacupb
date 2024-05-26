@@ -4,15 +4,15 @@
   "description": "Swf-app",
   "main": "./build/swf-app.js",
   "scripts": {
-    "dev": "ts-node-dev --env-file=env/.development.env src/swf-app.ts",
+    "dev": "ts-node-dev --env-file=env/.development.env src/cacupb-app.ts",
     "build": "rm -rf ./build && tsc",
-    "start": "node --env-file=env/.production.env build/swf-app.js",
+    "start": "node --env-file=env/.production.env build/cacupb-app.js",
     "test": "jest --verbose"
   },
   "keywords": [
     "swf-app"
   ],
-  "author": "Lenin Javier Serrano Gil",
+  "author": "David Santiago Cárdenas Rivera",
   "license": "ISC",
   "eslintConfig": {
     "parserOptions": {

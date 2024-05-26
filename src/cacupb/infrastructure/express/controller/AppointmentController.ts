@@ -40,13 +40,12 @@ export default class AppointmentController {
   }
 
   public async getNonAttendedAppointments(
-    req: Request,
+    _req: Request,
     res: Response
   ): Promise<void> {
     try {
-      const appointments = await this.getNonAttendedAppointmentsUseCase.execute(
-        req.params.status
-      );
+      const appointments =
+        await this.getNonAttendedAppointmentsUseCase.execute();
       res.setHeader("Content-Type", "application/pdf");
       res.setHeader("Content-Disposition", "attachment; filename=report.pdf");
       res.status(200).send(appointments);
