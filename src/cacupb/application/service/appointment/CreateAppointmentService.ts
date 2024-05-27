@@ -1,12 +1,12 @@
-import Appointment from "../../domain/model/appointment/Appointment";
-import Customer from "../../domain/model/customer/Customer";
-import CustomerAppointment from "../../domain/model/web/CustomerAppointment";
-import AppointmentRepositoryPort from "../../domain/port/driven/repository/AppointmentRepositoryPort";
-import CustomerRepositoryPort from "../../domain/port/driven/repository/CustomerRepositoryPort";
-import CreateAppointmentServicePort from "../../domain/port/driver/service/CreateAppointmentServicePort";
-import Time from "../../domain/model/time/Time";
-import OfficeRepositoryPort from "../../domain/port/driven/repository/OfficeRepositoryPort";
-import { getAppointmentType } from "../../helper/GetAppointmentType";
+import Appointment from "../../../domain/model/appointment/Appointment";
+import Customer from "../../../domain/model/customer/Customer";
+import CustomerAppointment from "../../../domain/model/web/CustomerAppointment";
+import AppointmentRepositoryPort from "../../../domain/port/driven/repository/AppointmentRepositoryPort";
+import CustomerRepositoryPort from "../../../domain/port/driven/repository/CustomerRepositoryPort";
+import CreateAppointmentServicePort from "../../../domain/port/driver/service/CreateAppointmentServicePort";
+import Time from "../../../domain/model/time/Time";
+import OfficeRepositoryPort from "../../../domain/port/driven/repository/OfficeRepositoryPort";
+import { getAppointmentType } from "../../../helper/GetAppointmentType";
 
 export default class CreateAppointmentService
   implements CreateAppointmentServicePort

@@ -1,4 +1,4 @@
-import ChangeAppointmentService from "../../../../src/cacupb/application/service/ChangeAppointmentService";
+import ChangeAppointmentService from "../../../../src/cacupb/application/service/appointment/ChangeAppointmentService";
 import CustomerAppointmentId from "../../../../src/cacupb/domain/model/web/CustomerAppointmentId";
 import MySQLAppointmentRepository from "../../../../src/cacupb/infrastructure/repository/appointment/MySQLAppointmentRepository";
 import MySQLCustomerRepository from "../../../../src/cacupb/infrastructure/repository/customer/MySQLCustomerRepository";

@@ -1,12 +1,12 @@
-import Appointment from "../../domain/model/appointment/Appointment";
-import AppointmentRepositoryPort from "../../domain/port/driven/repository/AppointmentRepositoryPort";
-import CustomerRepositoryPort from "../../domain/port/driven/repository/CustomerRepositoryPort";
-import Time from "../../domain/model/time/Time";
-import OfficeRepositoryPort from "../../domain/port/driven/repository/OfficeRepositoryPort";
-import { getAppointmentType } from "../../helper/GetAppointmentType";
-import ChangeAppointmentServicePort from "../../domain/port/driver/service/ChangeAppointmentServicePort";
-import CustomerAppointmentId from "../../domain/model/web/CustomerAppointmentId";
-import Customer from "../../domain/model/customer/Customer";
+import Appointment from "../../../domain/model/appointment/Appointment";
+import AppointmentRepositoryPort from "../../../domain/port/driven/repository/AppointmentRepositoryPort";
+import CustomerRepositoryPort from "../../../domain/port/driven/repository/CustomerRepositoryPort";
+import Time from "../../../domain/model/time/Time";
+import OfficeRepositoryPort from "../../../domain/port/driven/repository/OfficeRepositoryPort";
+import { getAppointmentType } from "../../../helper/GetAppointmentType";
+import ChangeAppointmentServicePort from "../../../domain/port/driver/service/ChangeAppointmentServicePort";
+import CustomerAppointmentId from "../../../domain/model/web/CustomerAppointmentId";
+import Customer from "../../../domain/model/customer/Customer";
 
 export default class ChangeAppointmentService
   implements ChangeAppointmentServicePort

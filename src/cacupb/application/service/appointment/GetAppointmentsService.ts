@@ -1,6 +1,6 @@
-import Appointment from "../../domain/model/appointment/Appointment";
-import AppointmentRepositoryPort from "../../domain/port/driven/repository/AppointmentRepositoryPort";
-import GetAppointmentsServicePort from "../../domain/port/driver/service/GetAppointmentsServicePort";
+import Appointment from "../../../domain/model/appointment/Appointment";
+import AppointmentRepositoryPort from "../../../domain/port/driven/repository/AppointmentRepositoryPort";
+import GetAppointmentsServicePort from "../../../domain/port/driver/service/GetAppointmentsServicePort";
 
 export default class GetAppointmentsService
   implements GetAppointmentsServicePort

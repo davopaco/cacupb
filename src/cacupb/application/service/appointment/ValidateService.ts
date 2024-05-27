@@ -1,5 +1,5 @@
-import AppointmentCustomerRepositoryPort from "../../domain/port/driven/repository/AppointmentCustomerRepositoryPort";
-import ValidateServicePort from "../../domain/port/driven/service/ValidateServicePort";
+import AppointmentCustomerRepositoryPort from "../../../domain/port/driven/repository/AppointmentCustomerRepositoryPort";
+import ValidateServicePort from "../../../domain/port/driven/service/ValidateServicePort";
 
 export default class ValidateService implements ValidateServicePort {
   constructor(
