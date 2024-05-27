@@ -27,4 +27,8 @@ export default class TicketService implements TicketServicePort {
       parseInt(officeId)
     );
   }
+
+  public async getQueueByOfficeId(officeId: string): Promise<Ticket[]> {
+    return this.ticketRepository.getQueue(parseInt(officeId));
+  }
 }

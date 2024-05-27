@@ -9,7 +9,7 @@ export default class GetTicketByIdUseCase implements GetTicketByIdUseCasePort {
     private readonly validateService: ValidateServicePort
   ) {}
 
-  async execute(ticketId: string, officeId: string) {
+  public async execute(ticketId: string, officeId: string) {
     if (
       await this.validateService.validateAppointmentForCustomer(
         ticketId,
