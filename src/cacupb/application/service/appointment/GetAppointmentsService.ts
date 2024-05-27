@@ -14,4 +14,10 @@ export default class GetAppointmentsService
   ): Promise<Appointment[]> {
     return await this.appointmentRepositoryPort.getByStatus(parseInt(status));
   }
+
+  public async getAppointmentById(appointmentId: string): Promise<Appointment> {
+    return await this.appointmentRepositoryPort.getById(
+      parseInt(appointmentId)
+    );
+  }
 }
