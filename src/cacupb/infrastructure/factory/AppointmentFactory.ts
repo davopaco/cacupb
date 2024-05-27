@@ -2,7 +2,7 @@ import ExpressRouter from "../../../express/route/ExpressRouter";
 import ChangeAppointmentService from "../../application/service/appointment/ChangeAppointmentService";
 import CreateAppointmentService from "../../application/service/appointment/CreateAppointmentService";
 import GetAppointmentsService from "../../application/service/appointment/GetAppointmentsService";
-import ValidateService from "../../application/service/appointment/ValidateService";
+import ValidateService from "../../application/service/ValidateService";
 import CancelAppointmentUseCase from "../../application/usecase/appointment/CancelAppointmentUseCase";
 import ChangeAppointmentUseCase from "../../application/usecase/appointment/ChangeAppointmentUseCase";
 import CreateAppointmentUseCase from "../../application/usecase/appointment/CreateAppointmentUseCase";

@@ -7,6 +7,7 @@ import CreateAppointmentServicePort from "../../../domain/port/driver/service/ap
 import Time from "../../../domain/model/time/Time";
 import OfficeRepositoryPort from "../../../domain/port/driven/repository/OfficeRepositoryPort";
 import { getAppointmentType } from "../../../helper/GetAppointmentType";
+import CustomerServicePort from "../../../domain/port/driven/service/CustomerServicePort";
 
 export default class CreateAppointmentService
   implements CreateAppointmentServicePort
@@ -14,7 +15,8 @@ export default class CreateAppointmentService
   constructor(
     private readonly appointmentRepository: AppointmentRepositoryPort,
     private readonly customerRepository: CustomerRepositoryPort,
-    private readonly officeRepository: OfficeRepositoryPort
+    private readonly officeRepository: OfficeRepositoryPort,
+    private readonly customerService: CustomerServicePort
   ) {}
 
   public async createAppointmentForCustomer(
@@ -29,7 +31,10 @@ export default class CreateAppointmentService
       customerAppointment.lastName,
       parseInt(customerAppointment.customerId),
       customerAppointment.address,
-      customerAppointment.birthDate
+      customerAppointment.birthDate,
+      await this.appointmentRepository.getAppointmentsAttendedByCustomer(
+        parseInt(customerAppointment.customerId)
+      )
     );
 
     const office = await this.officeRepository.getById(
@@ -58,10 +63,9 @@ export default class CreateAppointmentService
   }
 
   async validateCustomer(customerId: string): Promise<boolean> {
-    const customer = await this.customerRepository.getById(
+    const customer = await this.customerService.getCustomerById(
       parseInt(customerId)
     );
-    console.log(customer);
     if (customer.isNull()) {
       return false;
     }

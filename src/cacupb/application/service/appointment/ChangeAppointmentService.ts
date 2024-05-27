@@ -26,7 +26,10 @@ export default class ChangeAppointmentService
         customerAppointmentId.lastName,
         parseInt(customerAppointmentId.customerId),
         customerAppointmentId.address,
-        customerAppointmentId.birthDate
+        customerAppointmentId.birthDate,
+        await this.appointmentRepository.getAppointmentsAttendedByCustomer(
+          parseInt(customerAppointmentId.customerId)
+        )
       );
 
       const customerUpdated = await this.customerRepository.update(customer);
