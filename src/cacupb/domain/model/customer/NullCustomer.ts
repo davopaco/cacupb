@@ -7,7 +7,8 @@ export default class NullCustomer extends AbstractCustomer {
       "Lastname not found in database",
       -1,
       "Address not found in database",
-      new Date()
+      new Date(),
+      0
     );
   }
 
@@ -32,6 +33,10 @@ export default class NullCustomer extends AbstractCustomer {
   }
 
   public setBirthDate(): void {
+    return;
+  }
+
+  public setAttendance(): void {
     return;
   }
 }

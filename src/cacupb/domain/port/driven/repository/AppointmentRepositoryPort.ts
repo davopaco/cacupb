@@ -4,4 +4,5 @@ import RepositoryPort from "./RepositoryPort";
 export default interface AppointmentRepositoryPort
   extends RepositoryPort<number, Appointment> {
   getByStatus(status: number): Promise<Appointment[]>;
+  getAppointmentsAttendedByCustomer(customerId: number): Promise<number>;
 }

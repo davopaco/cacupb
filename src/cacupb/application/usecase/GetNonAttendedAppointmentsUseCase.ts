@@ -11,7 +11,7 @@ export default class GetNonAttendedAppointmentsUseCase
   ) {}
   public async execute(): Promise<Buffer> {
     const appointments =
-      await this.getAppointmentsService.getAppointmentByNonAttended("1");
+      await this.getAppointmentsService.getAppointmentByNonAttended("3");
     const pdf = await this.pdfCreator.createPDF(appointments);
     return Buffer.from(pdf);
   }

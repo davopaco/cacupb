@@ -174,4 +174,14 @@ export default class AppointmentRepository
     });
     return appointments;
   }
+
+  public async getAppointmentsAttendedByCustomer(
+    customerId: number
+  ): Promise<number> {
+    const [appointments] = await this.mySqlDBC.query<{ ATTEND: number }>(
+      "SELECT COUNT(*) AS ATTEND FROM CITAS WHERE CLIENTES_ID = ? AND ESTADO = 1",
+      [customerId]
+    );
+    return appointments.ATTEND;
+  }
 }

@@ -6,9 +6,10 @@ export default class Customer extends AbstractCustomer {
     lastName: string,
     id: number,
     address: string,
-    birthDate: Date
+    birthDate: Date,
+    attendance: number
   ) {
-    super(name, lastName, id, address, birthDate);
+    super(name, lastName, id, address, birthDate, attendance);
   }
 
   public isNull(): boolean {
