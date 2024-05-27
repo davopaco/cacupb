@@ -1,3 +1,5 @@
+import Ticket from "../../../../model/ticket/Ticket";
+
 export default interface AdminServicePort {
   createAdmin(
     adminId: number,
@@ -9,4 +11,5 @@ export default interface AdminServicePort {
     module: number
   ): Promise<boolean>;
   validatePassword(adminId: number, password: string): Promise<boolean>;
+  getAllCustomerTickets(): Promise<Ticket[]>;
 }

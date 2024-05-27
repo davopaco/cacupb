@@ -1,4 +1,5 @@
 import Admin from "../../../domain/model/admin/Admin";
+import Ticket from "../../../domain/model/ticket/Ticket";
 import AdminRepositoryPort from "../../../domain/port/driven/repository/AdminRepositoryPort";
 import OfficeRepositoryPort from "../../../domain/port/driven/repository/OfficeRepositoryPort";
 import AdminServicePort from "../../../domain/port/driver/service/admin/AdminServicePort";
@@ -41,5 +42,17 @@ export default class AdminService implements AdminServicePort {
   ): Promise<boolean> {
     const admin = await this.adminRepository.getById(adminId);
     return await this.bCrypt.comparePassword(password, admin.getPassword());
+  }
+
+  public async getAllCustomerTickets(): Promise<Ticket[]> {
+    const admin = await this.adminRepository.getAll();
+    const customerTickets: Ticket[] = [];
+    admin.forEach((admin) => {
+      const tickets = admin.getCustomerTicket();
+      if (!tickets.isNull()) {
+        customerTickets.push(tickets);
+      }
+    });
+    return customerTickets;
   }
 }

@@ -1,7 +1,7 @@
 import Ticket from "../../../domain/model/ticket/Ticket";
 import AppointmentServicePort from "../../../domain/port/driver/service/appointment/AppointmentServicePort";
 import TicketServicePort from "../../../domain/port/driver/service/ticket/TicketServicePort";
-import GetQueueByOfficeForCustomerUseCasePort from "../../../domain/port/driver/usecase/ticket/GetQueueByOfficeUseCasePort";
+import GetQueueByOfficeForCustomerUseCasePort from "../../../domain/port/driver/usecase/ticket/GetQueueByOfficeForCustomerUseCasePort";
 
 export default class GetQueueByOfficeForCustomerUseCase
   implements GetQueueByOfficeForCustomerUseCasePort
