@@ -1,5 +1,5 @@
 import ValidateServicePort from "../../../domain/port/driven/service/ValidateServicePort";
-import ChangeAppointmentServicePort from "../../../domain/port/driver/service/appointment/ChangeAppointmentServicePort";
+import AppointmentServicePort from "../../../domain/port/driver/service/appointment/AppointmentServicePort";
 import CancelAppointmentUseCasePort from "../../../domain/port/driver/usecase/appointment/CancelAppointmentUseCasePort";
 
 export default class CancelAppointmentUseCase
@@ -7,7 +7,7 @@ export default class CancelAppointmentUseCase
 {
   constructor(
     private readonly validateService: ValidateServicePort,
-    private readonly changeAppointmentService: ChangeAppointmentServicePort
+    private readonly appointmentService: AppointmentServicePort
   ) {}
 
   public async execute(
@@ -20,7 +20,7 @@ export default class CancelAppointmentUseCase
         appointmentId
       )
     ) {
-      return await this.changeAppointmentService.cancelAppointmentForCustomer(
+      return await this.appointmentService.cancelAppointmentForCustomer(
         parseInt(appointmentId)
       );
     }

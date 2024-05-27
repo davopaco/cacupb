@@ -1,13 +1,13 @@
 import CustomerAppointmentId from "../../../domain/model/web/CustomerAppointmentId";
 import ValidateServicePort from "../../../domain/port/driven/service/ValidateServicePort";
-import ChangeAppointmentServicePort from "../../../domain/port/driver/service/appointment/ChangeAppointmentServicePort";
+import AppointmentServicePort from "../../../domain/port/driver/service/appointment/AppointmentServicePort";
 import ChangeAppointmentUseCasePort from "../../../domain/port/driver/usecase/appointment/ChangeAppointmentUseCasePort";
 
 export default class ChangeAppointmentUseCase
   implements ChangeAppointmentUseCasePort
 {
   constructor(
-    private readonly changeAppointmentService: ChangeAppointmentServicePort,
+    private readonly appointmentService: AppointmentServicePort,
     private readonly validateService: ValidateServicePort
   ) {}
 
@@ -20,7 +20,7 @@ export default class ChangeAppointmentUseCase
         customerAppointmentId.id
       )
     ) {
-      return await this.changeAppointmentService.changeAppointmentForCustomer(
+      return await this.appointmentService.changeAppointmentForCustomer(
         customerAppointmentId
       );
     }

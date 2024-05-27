@@ -5,4 +5,5 @@ export default interface CustomerServicePort {
   getAttendanceFromAppointments(customerId: number): Promise<number>;
   getCustomerById(customerId: number): Promise<Customer>;
   getAllCustomers(): Promise<Customer[]>;
+  validateCustomer(customerId: string): Promise<boolean>;
 }

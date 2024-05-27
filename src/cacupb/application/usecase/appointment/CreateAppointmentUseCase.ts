@@ -1,16 +1,14 @@
 import CustomerAppointment from "../../../domain/model/web/CustomerAppointment";
-import CreateAppointmentServicePort from "../../../domain/port/driver/service/appointment/CreateAppointmentServicePort";
+import AppointmentServicePort from "../../../domain/port/driver/service/appointment/AppointmentServicePort";
 import CreateAppointmentUseCasePort from "../../../domain/port/driver/usecase/appointment/CreateAppointmentUseCasePort";
 
 export default class CreateAppointmentUseCase
   implements CreateAppointmentUseCasePort
 {
-  constructor(
-    private readonly createAppointmentService: CreateAppointmentServicePort
-  ) {}
+  constructor(private readonly appointmentService: AppointmentServicePort) {}
 
   async execute(customerAppointment: CustomerAppointment): Promise<boolean> {
-    return await this.createAppointmentService.createAppointmentForCustomer(
+    return await this.appointmentService.createAppointmentForCustomer(
       customerAppointment
     );
   }
