@@ -1,5 +1,6 @@
 import Admin from "../../../domain/model/admin/Admin";
 import AdminRepositoryPort from "../../../domain/port/driven/repository/AdminRepositoryPort";
+import ModuleRepositoryPort from "../../../domain/port/driven/repository/ModuleRepositoryPort";
 import OfficeRepositoryPort from "../../../domain/port/driven/repository/OfficeRepositoryPort";
 import AdminServicePort from "../../../domain/port/driver/service/admin/AdminServicePort";
 import BCrypt from "../../../helper/BCrypt";
@@ -9,6 +10,7 @@ export default class AdminService implements AdminServicePort {
   constructor(
     private readonly adminRepository: AdminRepositoryPort,
     private readonly officeRepository: OfficeRepositoryPort,
+    private readonly moduleRepository: ModuleRepositoryPort,
     private readonly bCrypt: BCrypt
   ) {}
 
