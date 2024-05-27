@@ -1,3 +1,4 @@
+import Module from "../module/Module";
 import Office from "../office/Office";
 import AbstractAdmin from "./AbstractAdmin";
 import { AdminType } from "./types/AdminType";
@@ -9,9 +10,10 @@ export default class Admin extends AbstractAdmin {
     lastName: string,
     office: Office,
     password: string,
-    type: AdminType
+    type: AdminType,
+    module: Module
   ) {
-    super(id, name, lastName, office, password, type);
+    super(id, name, lastName, office, password, type, module);
   }
 
   public isNull(): boolean {

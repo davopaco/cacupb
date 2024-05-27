@@ -1,3 +1,4 @@
+import NullModule from "../module/NullModule";
 import NullOffice from "../office/NullOffice";
 import AbstractAdmin from "./AbstractAdmin";
 import { AdminType } from "./types/AdminType";
@@ -10,7 +11,8 @@ export default class NullAdmin extends AbstractAdmin {
       "Lastname not found in database",
       new NullOffice(),
       "Password not found in database",
-      AdminType.NULL
+      AdminType.NULL,
+      new NullModule()
     );
   }
 
@@ -27,6 +29,10 @@ export default class NullAdmin extends AbstractAdmin {
   }
 
   public setType(): void {
+    return;
+  }
+
+  public setModule(): void {
     return;
   }
 }
