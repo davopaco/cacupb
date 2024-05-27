@@ -1,11 +1,12 @@
 import ExpressRouter from "../../../express/route/ExpressRouter";
-import ChangeAppointmentService from "../../application/service/appointment/ChangeAppointmentService";
-import CreateAppointmentService from "../../application/service/appointment/CreateAppointmentService";
-import GetAppointmentsService from "../../application/service/appointment/GetAppointmentsService";
 import ValidateService from "../../application/service/ValidateService";
+import AppointmentService from "../../application/service/appointment/AppointmentService";
+import CustomerService from "../../application/service/customer/CustomerService";
+import TicketService from "../../application/service/ticket/TicketService";
 import CancelAppointmentUseCase from "../../application/usecase/appointment/CancelAppointmentUseCase";
 import ChangeAppointmentUseCase from "../../application/usecase/appointment/ChangeAppointmentUseCase";
 import CreateAppointmentUseCase from "../../application/usecase/appointment/CreateAppointmentUseCase";
+import GetAllAppointmentsUseCase from "../../application/usecase/appointment/GetAllAppointmentsUseCase";
 import GetNonAttendedAppointmentsUseCase from "../../application/usecase/appointment/GetNonAttendedAppointmentsUseCase";
 import ValidateIdsChangeAppointmentUseCase from "../../application/usecase/appointment/ValidateIdsChangeAppointmentUseCase";
 import PDFCreator from "../../helper/PDFCreator";
@@ -13,11 +14,12 @@ import MySqlDBC from "../../util/database/MySqlDBC";
 import AppointmentController from "../express/controller/AppointmentController";
 import AppointmentRouter from "../express/routes/AppointmentRouter";
 import MySQLAppointmentRepository from "../repository/appointment/MySQLAppointmentRepository";
-import MySQLAppointmentCustomerRepository from "../repository/appointmentCustomer/MySQLAppointmentCustomerRepository";
 import MySQLCustomerRepository from "../repository/customer/MySQLCustomerRepository";
 import MySQLOfficesRepository from "../repository/offices/MySQLOfficeRepository";
+import InMemoryTicketRepository from "../repository/ticket/InMemoryTicketRepository";
+import PriorityQueue from "../repository/ticket/PriorityQueue";
 
-export default class AppointmentFactory {
+export default class CACUPBFactory {
   public createRouter(): ExpressRouter {
     //MySQL Connection
     const mySqlConnectionConfig = {
@@ -37,47 +39,60 @@ export default class AppointmentFactory {
       mySQLCustomerRepository,
       mySQLOfficesRepository
     );
-    const mySQLAppointmentCustomerRepository =
-      new MySQLAppointmentCustomerRepository(mySqlDBC);
+    const priorityQueue = new PriorityQueue();
+    const inMemoryTicketRepository = new InMemoryTicketRepository(
+      priorityQueue
+    );
 
     //Helpers
     const pdfCreator = new PDFCreator();
 
     //Services
-    const createAppointmentService = new CreateAppointmentService(
+    const customerService = new CustomerService(
+      mySQLAppointmentRepository,
+      mySQLCustomerRepository
+    );
+    const appointmentService = new AppointmentService(
       mySQLAppointmentRepository,
       mySQLCustomerRepository,
-      mySQLOfficesRepository
+      mySQLOfficesRepository,
+      customerService
     );
-    const changeAppointmentService = new ChangeAppointmentService(
-      mySQLAppointmentRepository,
-      mySQLCustomerRepository,
-      mySQLOfficesRepository
-    );
-    const getAppointmentService = new GetAppointmentsService(
-      mySQLAppointmentRepository
+    const ticketService = new TicketService(
+      inMemoryTicketRepository,
+      appointmentService
     );
     const validateService = new ValidateService(
-      mySQLAppointmentCustomerRepository
+      mySQLCustomerRepository,
+      mySQLOfficesRepository,
+      inMemoryTicketRepository,
+      mySQLAppointmentRepository
     );
 
-    //UseCases
+    //UseCases for Appointments
     const cancelAppointmentUseCase = new CancelAppointmentUseCase(
       validateService,
-      changeAppointmentService
+      appointmentService
     );
     const changeAppointmentUseCase = new ChangeAppointmentUseCase(
-      changeAppointmentService,
+      appointmentService,
       validateService
     );
     const createAppointmentUseCase = new CreateAppointmentUseCase(
-      createAppointmentService
+      appointmentService
     );
     const getNonAttendedAppointmentsUseCase =
-      new GetNonAttendedAppointmentsUseCase(getAppointmentService, pdfCreator);
+      new GetNonAttendedAppointmentsUseCase(appointmentService, pdfCreator);
     const validateIdsChangeAppointmentUseCase =
       new ValidateIdsChangeAppointmentUseCase(validateService);
+    const getAllAppointmentsUseCase = new GetAllAppointmentsUseCase(
+      appointmentService
+    );
 
+    //UseCases for Tickets
+    const 
+
+    //Controllers
     const appointmentController = new AppointmentController(
       createAppointmentUseCase,
       cancelAppointmentUseCase,

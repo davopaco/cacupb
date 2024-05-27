@@ -1,8 +1,9 @@
-import AbstractUser from "../user/AbstractUser";
+import Office from "../office/Office";
+import AbstractAdmin from "./AbstractAdmin";
 
-export default class Admin extends AbstractUser {
-  constructor(id: number, name: string, lastName: string) {
-    super(id, name, lastName);
+export default class Admin extends AbstractAdmin {
+  constructor(id: number, name: string, lastName: string, office: Office) {
+    super(id, name, lastName, office);
   }
 
   public isNull(): boolean {

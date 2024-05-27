@@ -1,7 +1,7 @@
 import Express from "./express/Express";
-import AppointmentFactory from "./cacupb/infrastructure/factory/AppointmentFactory";
+import CACUPBFactory from "./cacupb/infrastructure/factory/CACUPBFactory";
 
-const appointmentFactory = new AppointmentFactory();
+const appointmentFactory = new CACUPBFactory();
 const appointmentRouter = appointmentFactory.createRouter();
 const cacupbApp = new Express([appointmentRouter]);
 cacupbApp.start();
