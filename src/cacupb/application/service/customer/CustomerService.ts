@@ -58,7 +58,7 @@ export default class CustomerService implements CustomerServicePort {
     return customersWithAttendance;
   }
 
-  async validateCustomer(customerId: string): Promise<boolean> {
+  public async validateCustomer(customerId: string): Promise<boolean> {
     const customer = await this.getCustomerById(parseInt(customerId));
     if (customer.isNull()) {
       return false;
