@@ -1,4 +1,4 @@
-import ValidateServicePort from "../../../domain/port/driven/service/ValidateServicePort";
+import ValidateServicePort from "../../../domain/port/driver/service/ValidateServicePort";
 import AppointmentServicePort from "../../../domain/port/driver/service/appointment/AppointmentServicePort";
 import CancelAppointmentUseCasePort from "../../../domain/port/driver/usecase/appointment/CancelAppointmentUseCasePort";
 

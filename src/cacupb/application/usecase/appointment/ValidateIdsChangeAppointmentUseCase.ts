@@ -1,4 +1,4 @@
-import ValidateServicePort from "../../../domain/port/driven/service/ValidateServicePort";
+import ValidateServicePort from "../../../domain/port/driver/service/ValidateServicePort";
 import ValidateIdsChangeAppointmentUseCasePort from "../../../domain/port/driver/usecase/appointment/ValidateIdsChangeUseCasePort";
 
 export default class ValidateIdsChangeAppointmentUseCase

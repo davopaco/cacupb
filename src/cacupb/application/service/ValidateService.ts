@@ -2,7 +2,7 @@ import AppointmentRepositoryPort from "../../domain/port/driven/repository/Appoi
 import CustomerRepositoryPort from "../../domain/port/driven/repository/CustomerRepositoryPort";
 import OfficeRepositoryPort from "../../domain/port/driven/repository/OfficeRepositoryPort";
 import TicketRepositoryPort from "../../domain/port/driven/repository/TicketRepositoryPort";
-import ValidateServicePort from "../../domain/port/driven/service/ValidateServicePort";
+import ValidateServicePort from "../../domain/port/driver/service/ValidateServicePort";
 
 export default class ValidateService implements ValidateServicePort {
   constructor(

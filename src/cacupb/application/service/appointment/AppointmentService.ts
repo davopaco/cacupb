@@ -7,7 +7,7 @@ import { getAppointmentType } from "../../../helper/GetAppointmentType";
 import CustomerAppointmentId from "../../../domain/model/web/CustomerAppointmentId";
 import Customer from "../../../domain/model/customer/Customer";
 import CustomerAppointment from "../../../domain/model/web/CustomerAppointment";
-import CustomerServicePort from "../../../domain/port/driven/service/CustomerServicePort";
+import CustomerServicePort from "../../../domain/port/driver/service/customer/CustomerServicePort";
 import AppointmentServicePort from "../../../domain/port/driver/service/appointment/AppointmentServicePort";
 
 export default class AppointmentService implements AppointmentServicePort {

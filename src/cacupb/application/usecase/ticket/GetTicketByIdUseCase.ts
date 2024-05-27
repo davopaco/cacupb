@@ -1,5 +1,5 @@
 import NullTicket from "../../../domain/model/ticket/NullTicket";
-import ValidateServicePort from "../../../domain/port/driven/service/ValidateServicePort";
+import ValidateServicePort from "../../../domain/port/driver/service/ValidateServicePort";
 import TicketServicePort from "../../../domain/port/driver/service/ticket/TicketServicePort";
 import GetTicketByIdUseCasePort from "../../../domain/port/driver/usecase/ticket/GetTicketByIdUseCasePort";
 

@@ -2,7 +2,7 @@ import Customer from "../../../domain/model/customer/Customer";
 import NullCustomer from "../../../domain/model/customer/NullCustomer";
 import AppointmentRepositoryPort from "../../../domain/port/driven/repository/AppointmentRepositoryPort";
 import CustomerRepositoryPort from "../../../domain/port/driven/repository/CustomerRepositoryPort";
-import CustomerServicePort from "../../../domain/port/driven/service/CustomerServicePort";
+import CustomerServicePort from "../../../domain/port/driver/service/customer/CustomerServicePort";
 
 export default class CustomerService implements CustomerServicePort {
   constructor(

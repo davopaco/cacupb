@@ -1,4 +1,4 @@
-import ValidateServicePort from "../../../domain/port/driven/service/ValidateServicePort";
+import ValidateServicePort from "../../../domain/port/driver/service/ValidateServicePort";
 import ValidateIdsCheckQueueUseCasePort from "../../../domain/port/driver/usecase/ticket/ValidateIdsCheckQueueUseCasePort";
 
 export default class ValidateIdsCheckQueueUseCase
