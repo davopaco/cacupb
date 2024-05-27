@@ -4,7 +4,7 @@ import CustomerRepositoryPort from "../../../domain/port/driven/repository/Custo
 import Time from "../../../domain/model/time/Time";
 import OfficeRepositoryPort from "../../../domain/port/driven/repository/OfficeRepositoryPort";
 import { getAppointmentType } from "../../../helper/GetAppointmentType";
-import ChangeAppointmentServicePort from "../../../domain/port/driver/service/ChangeAppointmentServicePort";
+import ChangeAppointmentServicePort from "../../../domain/port/driver/service/appointment/ChangeAppointmentServicePort";
 import CustomerAppointmentId from "../../../domain/model/web/CustomerAppointmentId";
 import Customer from "../../../domain/model/customer/Customer";
 

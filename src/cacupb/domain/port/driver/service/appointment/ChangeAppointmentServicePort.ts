@@ -1,4 +1,4 @@
-import CustomerAppointmentId from "../../../model/web/CustomerAppointmentId";
+import CustomerAppointmentId from "../../../../model/web/CustomerAppointmentId";
 
 export default interface ChangeAppointmentServicePort {
   changeAppointmentForCustomer(

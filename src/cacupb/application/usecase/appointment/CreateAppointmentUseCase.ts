@@ -1,6 +1,6 @@
-import CustomerAppointment from "../../domain/model/web/CustomerAppointment";
-import CreateAppointmentServicePort from "../../domain/port/driver/service/CreateAppointmentServicePort";
-import CreateAppointmentUseCasePort from "../../domain/port/driver/usecase/CreateAppointmentUseCasePort";
+import CustomerAppointment from "../../../domain/model/web/CustomerAppointment";
+import CreateAppointmentServicePort from "../../../domain/port/driver/service/appointment/CreateAppointmentServicePort";
+import CreateAppointmentUseCasePort from "../../../domain/port/driver/usecase/appointment/CreateAppointmentUseCasePort";
 
 export default class CreateAppointmentUseCase
   implements CreateAppointmentUseCasePort

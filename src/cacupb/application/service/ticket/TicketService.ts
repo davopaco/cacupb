@@ -1,7 +1,7 @@
 import Ticket from "../../../domain/model/ticket/Ticket";
 import TicketRepositoryPort from "../../../domain/port/driven/repository/TicketRepositoryPort";
-import GetAppointmentsServicePort from "../../../domain/port/driver/service/GetAppointmentsServicePort";
-import TicketServicePort from "../../../domain/port/driver/service/TicketServicePort";
+import GetAppointmentsServicePort from "../../../domain/port/driver/service/appointment/GetAppointmentsServicePort";
+import TicketServicePort from "../../../domain/port/driver/service/ticket/TicketServicePort";
 import { getTicketStatus } from "../../../helper/GetTicketStatus";
 
 export default class TicketService implements TicketServicePort {

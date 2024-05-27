@@ -1,5 +1,5 @@
-import ValidateServicePort from "../../domain/port/driven/service/ValidateServicePort";
-import ValidateIdsChangeAppointmentUseCasePort from "../../domain/port/driver/usecase/ValidateIdsChangeUseCasePort";
+import ValidateServicePort from "../../../domain/port/driven/service/ValidateServicePort";
+import ValidateIdsChangeAppointmentUseCasePort from "../../../domain/port/driver/usecase/appointment/ValidateIdsChangeUseCasePort";
 
 export default class ValidateIdsChangeAppointmentUseCase
   implements ValidateIdsChangeAppointmentUseCasePort

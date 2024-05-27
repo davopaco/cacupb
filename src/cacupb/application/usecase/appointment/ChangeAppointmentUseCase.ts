@@ -1,7 +1,7 @@
-import CustomerAppointmentId from "../../domain/model/web/CustomerAppointmentId";
-import ValidateServicePort from "../../domain/port/driven/service/ValidateServicePort";
-import ChangeAppointmentServicePort from "../../domain/port/driver/service/ChangeAppointmentServicePort";
-import ChangeAppointmentUseCasePort from "../../domain/port/driver/usecase/ChangeAppointmentUseCasePort";
+import CustomerAppointmentId from "../../../domain/model/web/CustomerAppointmentId";
+import ValidateServicePort from "../../../domain/port/driven/service/ValidateServicePort";
+import ChangeAppointmentServicePort from "../../../domain/port/driver/service/appointment/ChangeAppointmentServicePort";
+import ChangeAppointmentUseCasePort from "../../../domain/port/driver/usecase/appointment/ChangeAppointmentUseCasePort";
 
 export default class ChangeAppointmentUseCase
   implements ChangeAppointmentUseCasePort

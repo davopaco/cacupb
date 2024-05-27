@@ -1,6 +1,6 @@
-import GetAppointmentsServicePort from "../../domain/port/driver/service/GetAppointmentsServicePort";
-import GetNonAttendedAppointmentsUseCasePort from "../../domain/port/driver/usecase/GetNonAttendedAppointmentsUseCasePort";
-import PDFCreator from "../../helper/PDFCreator";
+import GetAppointmentsServicePort from "../../../domain/port/driver/service/appointment/GetAppointmentsServicePort";
+import GetNonAttendedAppointmentsUseCasePort from "../../../domain/port/driver/usecase/appointment/GetNonAttendedAppointmentsUseCasePort";
+import PDFCreator from "../../../helper/PDFCreator";
 
 export default class GetNonAttendedAppointmentsUseCase
   implements GetNonAttendedAppointmentsUseCasePort

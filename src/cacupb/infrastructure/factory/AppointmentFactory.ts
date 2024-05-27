@@ -3,11 +3,11 @@ import ChangeAppointmentService from "../../application/service/appointment/Chan
 import CreateAppointmentService from "../../application/service/appointment/CreateAppointmentService";
 import GetAppointmentsService from "../../application/service/appointment/GetAppointmentsService";
 import ValidateService from "../../application/service/appointment/ValidateService";
-import CancelAppointmentUseCase from "../../application/usecase/CancelAppointmentUseCase";
-import ChangeAppointmentUseCase from "../../application/usecase/ChangeAppointmentUseCase";
-import CreateAppointmentUseCase from "../../application/usecase/CreateAppointmentUseCase";
-import GetNonAttendedAppointmentsUseCase from "../../application/usecase/GetNonAttendedAppointmentsUseCase";
-import ValidateIdsChangeAppointmentUseCase from "../../application/usecase/ValidateIdsChangeAppointmentUseCase";
+import CancelAppointmentUseCase from "../../application/usecase/appointment/CancelAppointmentUseCase";
+import ChangeAppointmentUseCase from "../../application/usecase/appointment/ChangeAppointmentUseCase";
+import CreateAppointmentUseCase from "../../application/usecase/appointment/CreateAppointmentUseCase";
+import GetNonAttendedAppointmentsUseCase from "../../application/usecase/appointment/GetNonAttendedAppointmentsUseCase";
+import ValidateIdsChangeAppointmentUseCase from "../../application/usecase/appointment/ValidateIdsChangeAppointmentUseCase";
 import PDFCreator from "../../helper/PDFCreator";
 import MySqlDBC from "../../util/database/MySqlDBC";
 import AppointmentController from "../express/controller/AppointmentController";

@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import CancelAppointmentUseCasePort from "../../../domain/port/driver/usecase/CancelAppointmentUseCasePort";
-import CreateAppointmentUseCasePort from "../../../domain/port/driver/usecase/CreateAppointmentUseCasePort";
-import GetNonAttendedAppointmentsUseCasePort from "../../../domain/port/driver/usecase/GetNonAttendedAppointmentsUseCasePort";
-import ValidateIdsChangeAppointmentUseCasePort from "../../../domain/port/driver/usecase/ValidateIdsChangeUseCasePort";
+import CancelAppointmentUseCasePort from "../../../domain/port/driver/usecase/appointment/CancelAppointmentUseCasePort";
+import CreateAppointmentUseCasePort from "../../../domain/port/driver/usecase/appointment/CreateAppointmentUseCasePort";
+import GetNonAttendedAppointmentsUseCasePort from "../../../domain/port/driver/usecase/appointment/GetNonAttendedAppointmentsUseCasePort";
+import ValidateIdsChangeAppointmentUseCasePort from "../../../domain/port/driver/usecase/appointment/ValidateIdsChangeUseCasePort";
 import CustomerAppointment from "../../../domain/model/web/CustomerAppointment";
-import ChangeAppointmentUseCasePort from "../../../domain/port/driver/usecase/ChangeAppointmentUseCasePort";
+import ChangeAppointmentUseCasePort from "../../../domain/port/driver/usecase/appointment/ChangeAppointmentUseCasePort";
 
 export default class AppointmentController {
   constructor(
