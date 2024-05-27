@@ -5,7 +5,8 @@ export default interface AdminServicePort {
     name: string,
     lastName: string,
     type: string,
-    officeId: number
+    officeId: number,
+    module: number
   ): Promise<boolean>;
   validatePassword(adminId: number, password: string): Promise<boolean>;
 }

@@ -1,4 +1,3 @@
-import Module from "../module/Module";
 import Office from "../office/Office";
 import AbstractUser from "../user/AbstractUser";
 import { AdminType } from "./types/AdminType";
@@ -7,7 +6,7 @@ export default abstract class AbstractAdmin extends AbstractUser {
   protected office: Office;
   protected password: string;
   protected type: AdminType;
-  protected module: Module;
+  protected module: number;
 
   constructor(
     id: number,
@@ -16,7 +15,7 @@ export default abstract class AbstractAdmin extends AbstractUser {
     office: Office,
     password: string,
     type: AdminType,
-    module: Module
+    module: number
   ) {
     super(id, name, lastName);
     this.office = office;
@@ -49,11 +48,11 @@ export default abstract class AbstractAdmin extends AbstractUser {
     this.password = password;
   }
 
-  public getModule(): Module {
+  public getModule(): number {
     return this.module;
   }
 
-  public setModule(module: Module): void {
+  public setModule(module: number): void {
     this.module = module;
   }
 }

@@ -1,4 +1,3 @@
-import NullModule from "../module/NullModule";
 import NullOffice from "../office/NullOffice";
 import AbstractAdmin from "./AbstractAdmin";
 import { AdminType } from "./types/AdminType";
@@ -12,7 +11,7 @@ export default class NullAdmin extends AbstractAdmin {
       new NullOffice(),
       "Password not found in database",
       AdminType.NULL,
-      new NullModule()
+      -1
     );
   }
 

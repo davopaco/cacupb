@@ -1,6 +1,5 @@
 import Admin from "../../../domain/model/admin/Admin";
 import AdminRepositoryPort from "../../../domain/port/driven/repository/AdminRepositoryPort";
-import ModuleRepositoryPort from "../../../domain/port/driven/repository/ModuleRepositoryPort";
 import OfficeRepositoryPort from "../../../domain/port/driven/repository/OfficeRepositoryPort";
 import AdminServicePort from "../../../domain/port/driver/service/admin/AdminServicePort";
 import BCrypt from "../../../helper/BCrypt";
@@ -10,7 +9,6 @@ export default class AdminService implements AdminServicePort {
   constructor(
     private readonly adminRepository: AdminRepositoryPort,
     private readonly officeRepository: OfficeRepositoryPort,
-    private readonly moduleRepository: ModuleRepositoryPort,
     private readonly bCrypt: BCrypt
   ) {}
 
@@ -21,7 +19,7 @@ export default class AdminService implements AdminServicePort {
     lastName: string,
     type: string,
     officeId: number,
-    moduleId: number
+    module: number
   ): Promise<boolean> {
     const office = await this.officeRepository.getById(officeId);
     const hashedPassword = await this.bCrypt.hashPassword(password);
@@ -31,7 +29,8 @@ export default class AdminService implements AdminServicePort {
       lastName,
       office,
       hashedPassword,
-      getAdminType(type)
+      getAdminType(type),
+      module
     );
     return await this.adminRepository.create(admin);
   }
