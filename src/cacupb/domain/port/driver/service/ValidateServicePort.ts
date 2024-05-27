@@ -3,4 +3,12 @@ export default interface ValidateServicePort {
     customerId: string,
     appointmentId: string
   ): Promise<boolean>;
+  validateAppointmentForOffice(
+    officeId: string,
+    appointmentId: string
+  ): Promise<boolean>;
+  validateTicketForAppointment(
+    appointmentId: string,
+    ticketId: string
+  ): Promise<boolean>;
 }

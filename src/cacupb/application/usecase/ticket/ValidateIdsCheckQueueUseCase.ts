@@ -6,7 +6,7 @@ export default class ValidateIdsCheckQueueUseCase
 {
   constructor(private readonly validateService: ValidateServicePort) {}
   async execute(customerId: string, ticketId: string): Promise<boolean> {
-    return await this.validateService.validateAppointmentForCustomer(
+    return await this.validateService.validateTicketForAppointment(
       customerId,
       ticketId
     );
