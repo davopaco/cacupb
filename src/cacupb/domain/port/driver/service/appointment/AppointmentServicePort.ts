@@ -12,4 +12,5 @@ export default interface AppointmentServicePort {
   createAppointmentForCustomer(
     customerAppointment: CustomerAppointment
   ): Promise<boolean>;
+  getAllAppointments(): Promise<Appointment[]>;
 }

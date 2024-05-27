@@ -122,4 +122,8 @@ export default class AppointmentService implements AppointmentServicePort {
   public async getAppointmentById(appointmentId: string): Promise<Appointment> {
     return await this.appointmentRepository.getById(parseInt(appointmentId));
   }
+
+  public async getAllAppointments(): Promise<Appointment[]> {
+    return await this.appointmentRepository.getAll();
+  }
 }
