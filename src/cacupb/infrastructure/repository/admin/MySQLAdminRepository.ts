@@ -59,13 +59,15 @@ export default class MySQLAdminRepository implements AdminRepositoryPort {
       console.error("Error getting the admin from the database");
       return new NullAdmin();
     }
+
     return new Admin(
       result.ID,
       result.NOMBRES,
       result.APELLIDOS,
       await this.officeRepository.getById(result.SEDES_ID),
       result.HASH,
-      result.TIPO
+      result.TIPO,
+      result.MODULO
     );
   }
 
@@ -87,7 +89,8 @@ export default class MySQLAdminRepository implements AdminRepositoryPort {
           admin.APELLIDOS,
           await this.officeRepository.getById(admin.SEDES_ID),
           admin.HASH,
-          admin.TIPO
+          admin.TIPO,
+          admin.MODULO
         )
     );
     return await Promise.all(admins);

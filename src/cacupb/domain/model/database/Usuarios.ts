@@ -5,4 +5,5 @@ export default interface Usuarios {
   APELLIDOS: string;
   TIPO: number;
   SEDES_ID: number;
+  MODULO: number;
 }
