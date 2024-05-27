@@ -18,7 +18,8 @@ export default class AdminService implements AdminServicePort {
     name: string,
     lastName: string,
     type: string,
-    officeId: number
+    officeId: number,
+    moduleId: number
   ): Promise<boolean> {
     const office = await this.officeRepository.getById(officeId);
     const hashedPassword = await this.bCrypt.hashPassword(password);
