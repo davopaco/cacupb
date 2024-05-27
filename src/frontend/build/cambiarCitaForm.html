@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cambiar cita</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/pedirCita.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+      <img src="assets/images/logo.png" alt="Logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Pedir cita</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Cancelar cita</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Cambiar cita</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Revisar turnos</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <img src="user-icon.svg" alt="Usuario" class="user-icon">
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="main-content container">
+    <h1 class="section-title">Cambiar cita</h1>
+    <div class="info-box">Información personal</div>
+    <div class="form-section">
+      <div class="left">
+        <form>
+          <div class="form-group">
+            <label for="idNumber">Número de identificación</label>
+            <input type="text" class="form-control" id="idNumber" placeholder="Ingresa tu número de identificación">
+          </div>
+          <div class="form-group">
+            <label for="fullName">Nombres completos</label>
+            <input type="text" class="form-control" id="fullName" placeholder="Ingresa tus nombres completos">
+          </div>
+          <div class="form-group">
+            <label for="birthDate">Fecha de nacimiento</label>
+            <input type="date" class="form-control" id="birthDate">
+          </div>
+      </div>
+      <div class="right">
+        <div class="form-group">
+          <label for="lastName">Apellidos completos</label>
+          <input type="text" class="form-control" id="lastName" placeholder="Ingresa tus apellidos completos">
+        </div>
+        <div class="form-group">
+          <label for="address">Dirección</label>
+          <input type="text" class="form-control" id="address" placeholder="Ingresa tu dirección">
+        </div>
+        <img src="assets/images/point.png" alt="Imagen de la cita" class="appointment-image">
+      </div>
+    </div>
+    <div class="info-box">Información de la cita</div>
+    <div class="form-section">
+      <div class="left">
+        <div class="form-group">
+          <label for="appointmentType">Tipo de cita</label>
+          <input type="text" class="form-control" id="appointmentType" placeholder="Ingresa el tipo de cita">
+        </div>
+        <div class="form-group">
+          <label for="description">Descripción</label>
+          <textarea class="form-control" id="description" placeholder="Describe la cita"></textarea>
+        </div>
+      </div>
+      <div class="right">
+        <div class="form-group">
+          <label for="appointmentDate">Fecha</label>
+          <input type="date" class="form-control" id="appointmentDate">
+        </div>
+        <div class="form-group">
+          <label for="appointmentTime">Hora</label>
+          <select class="form-control" id="appointmentTime">
+            <option>8:00 A.M</option>
+            <option>10:00 A.M</option>
+            <option>2:00 P.M</option>
+            <option>4:00 P.M</option>
+            <option>6:00 P.M</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="appointmentLocation">Lugar de la cita</label>
+          <input type="text" class="form-control" id="appointmentLocation" placeholder="Ingresa el lugar de la cita">
+        </div>
+      </div>
+    </div>
+    <div class="submit-button">
+      <button type="submit" class="btn btn-primary">Cambiar cita</button>
+    </div>
+    </form>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

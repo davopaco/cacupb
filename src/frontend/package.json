@@ -1,0 +1,27 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "main": "cita.js",
+  "scripts": {
+    "build": "tsc -w",
+    "lint": "ts-standard --fix",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^5.4.5"
+  },
+  "devDependencies": {
+    "ts-standard": "^12.0.2",
+    "tsc-alias": "^1.8.10"
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    },
+    "extends": "./node_modules/ts-standard/eslintrc.json"
+  },
+  "description": ""
+}

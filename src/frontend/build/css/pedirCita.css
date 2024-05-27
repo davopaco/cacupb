@@ -1,0 +1,57 @@
+.navbar-brand img {
+  height: 80px;
+}
+
+.user-icon {
+  height: 30px;
+}
+
+.main-content {
+  padding: 20px;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.info-box {
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  width: fit-content;
+  padding-left: 20px;
+}
+
+.form-section {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.form-section .left,
+.form-section .right {
+  flex: 1;
+  padding: 10px;
+}
+
+.form-section .right img {
+  max-width: 50%;
+  justify-self: center;
+}
+
+.form-group textarea {
+  height: 100px;
+}
+
+.appointment-image {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  margin-top: 20px;
+}
+
+.submit-button {
+  text-align: center;
+  margin-top: 20px;
+}

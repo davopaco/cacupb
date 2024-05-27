@@ -1,0 +1,34 @@
+.navbar-brand img {
+  height: 80px;
+}
+
+.user-icon {
+  height: 30px;
+}
+
+.main-content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.main-content .left,
+.main-content .right {
+  flex: 1;
+  padding: 20px;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.left h1 {
+  margin-bottom: 20px;
+}
+
+.right img {
+  max-width: 100%;
+  height: auto;
+}
