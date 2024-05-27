@@ -10,11 +10,21 @@ export default class TicketService implements TicketServicePort {
     private readonly getAppointmentService: GetAppointmentsServicePort
   ) {}
 
-  public async generateTicket(appointmentId: string): Promise<Ticket> {
+  public async generateTicket(appointmentId: string): Promise<boolean> {
     const appointment =
       await this.getAppointmentService.getAppointmentById(appointmentId);
     const ticket = new Ticket(0, appointment, getTicketStatus("Cola"));
-    this.ticketRepository.addTicket(ticket);
-    return ticket;
+    const addedTicket = this.ticketRepository.addTicket(ticket);
+    return addedTicket;
+  }
+
+  public async getTicketById(
+    ticketId: string,
+    officeId: string
+  ): Promise<Ticket> {
+    return this.ticketRepository.getTicketById(
+      parseInt(ticketId),
+      parseInt(officeId)
+    );
   }
 }

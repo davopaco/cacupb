@@ -17,9 +17,9 @@ export default class InMemoryTicketRepository implements TicketRepositoryPort {
     return this.priorityQueue.getOffice(officeId);
   }
 
-  public addTicket(ticket: Ticket): void {
+  public addTicket(ticket: Ticket): boolean {
     ticket.setId(this.generateTicketNumber());
-    this.priorityQueue.addTicket(ticket);
+    return this.priorityQueue.addTicket(ticket);
   }
 
   public getNextTicket(officeId: number): Ticket {
@@ -36,5 +36,9 @@ export default class InMemoryTicketRepository implements TicketRepositoryPort {
 
   private generateTicketNumber(): number {
     return ++this.ticketCounter;
+  }
+
+  public getTicketById(ticketId: number, officeId: number): Ticket {
+    return this.priorityQueue.getTicketById(ticketId, officeId);
   }
 }

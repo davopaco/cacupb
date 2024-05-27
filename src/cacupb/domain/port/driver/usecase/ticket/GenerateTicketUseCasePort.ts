@@ -1,5 +1,3 @@
-import Ticket from "../../../../model/ticket/Ticket";
-
 export default interface GenerateTicketUseCasePort {
-  execute(appointmentId: string): Promise<Ticket>;
+  execute(customerId: string, appointmentId: string): Promise<boolean>;
 }
