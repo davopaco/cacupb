@@ -24,6 +24,15 @@ export default class TicketService implements TicketServicePort {
     return addedTicket;
   }
 
+  public async getNextInQueue(adminId: string): Promise<Ticket> {
+    const admin = await this.adminRepository.getById(parseInt(adminId));
+    const nextTicket = this.ticketRepository.getNextTicket(
+      admin.getOffice().getId()
+    );
+    admin.setCustomerTicket(nextTicket);
+    return nextTicket;
+  }
+
   public async getTicketById(
     ticketId: string,
     officeId: string

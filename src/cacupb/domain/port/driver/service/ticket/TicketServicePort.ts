@@ -6,4 +6,5 @@ export default interface TicketServicePort {
   getQueueByAppointmentId(appointmentId: string): Promise<Ticket[]>;
   registerTicket(ticketId: string, adminId: string): Promise<boolean>;
   validateTicket(ticketId: string, officeId: string): boolean;
+  getNextInQueue(adminId: string): Promise<Ticket>;
 }

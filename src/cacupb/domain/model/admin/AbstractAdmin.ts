@@ -1,4 +1,6 @@
 import Office from "../office/Office";
+import NullTicket from "../ticket/NullTicket";
+import Ticket from "../ticket/Ticket";
 import AbstractUser from "../user/AbstractUser";
 import { AdminType } from "./types/AdminType";
 
@@ -7,6 +9,7 @@ export default abstract class AbstractAdmin extends AbstractUser {
   protected password: string;
   protected type: AdminType;
   protected module: number;
+  protected customerTicket: Ticket;
 
   constructor(
     id: number,
@@ -22,6 +25,7 @@ export default abstract class AbstractAdmin extends AbstractUser {
     this.password = password;
     this.type = type;
     this.module = module;
+    this.customerTicket = new NullTicket();
   }
 
   public getOffice(): Office {
@@ -54,5 +58,13 @@ export default abstract class AbstractAdmin extends AbstractUser {
 
   public setModule(module: number): void {
     this.module = module;
+  }
+
+  public getCustomerTicket(): Ticket {
+    return this.customerTicket;
+  }
+
+  public setCustomerTicket(customerTicket: Ticket): void {
+    this.customerTicket = customerTicket;
   }
 }
