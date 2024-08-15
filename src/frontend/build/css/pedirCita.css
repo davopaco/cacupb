@@ -1,3 +1,12 @@
+.navbar {
+  background-color: #43427c;
+  color: white;
+}
+
+.nav-link {
+  color: white;
+}
+
 .navbar-brand img {
   height: 80px;
 }
@@ -12,11 +21,14 @@
 
 .section-title {
   text-align: center;
+  color: #6664ba;
   margin-bottom: 20px;
 }
 
 .info-box {
-  background-color: #f8f9fa;
+  background-color: #6664ba;
+  color: white;
+  font-weight: 600;
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 20px;
@@ -54,4 +66,13 @@
 .submit-button {
   text-align: center;
   margin-top: 20px;
+}
+
+.btn {
+  background-color: #43427c;
+  border: none;
+}
+
+.btn:hover {
+  background-color: #5a599e;
 }

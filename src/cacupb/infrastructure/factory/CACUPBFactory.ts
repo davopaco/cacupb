@@ -1,18 +1,33 @@
 import ExpressRouter from "../../../express/route/ExpressRouter";
 import ValidateService from "../../application/service/ValidateService";
+import AdminService from "../../application/service/admin/AdminService";
 import AppointmentService from "../../application/service/appointment/AppointmentService";
 import CustomerService from "../../application/service/customer/CustomerService";
 import TicketService from "../../application/service/ticket/TicketService";
+import LoginAdminUseCase from "../../application/usecase/admin/LoginAdminUseCase";
 import CancelAppointmentUseCase from "../../application/usecase/appointment/CancelAppointmentUseCase";
 import ChangeAppointmentUseCase from "../../application/usecase/appointment/ChangeAppointmentUseCase";
 import CreateAppointmentUseCase from "../../application/usecase/appointment/CreateAppointmentUseCase";
 import GetAllAppointmentsUseCase from "../../application/usecase/appointment/GetAllAppointmentsUseCase";
 import GetNonAttendedAppointmentsUseCase from "../../application/usecase/appointment/GetNonAttendedAppointmentsUseCase";
 import ValidateIdsChangeAppointmentUseCase from "../../application/usecase/appointment/ValidateIdsChangeAppointmentUseCase";
+import GenerateTicketUseCase from "../../application/usecase/ticket/GenerateTicketUseCase";
+import GetQueueByOfficeForCustomerUseCase from "../../application/usecase/ticket/GetQueueByOfficeForCustomerUseCase";
+import GetQueueByOfficeUseCase from "../../application/usecase/ticket/GetQueueByOfficeUseCase";
+import GetTicketByIdUseCase from "../../application/usecase/ticket/GetTicketByIdUseCase";
+import NextInQueueUseCase from "../../application/usecase/ticket/NextInQueueUseCase";
+import RegisterTicketUseCase from "../../application/usecase/ticket/RegisterTicketUseCase";
+import ValidateIdsCheckQueueUseCase from "../../application/usecase/ticket/ValidateIdsCheckQueueUseCase";
+import BCrypt from "../../helper/BCrypt";
 import PDFCreator from "../../helper/PDFCreator";
 import MySqlDBC from "../../util/database/MySqlDBC";
+import AdminController from "../express/controller/AdminController";
 import AppointmentController from "../express/controller/AppointmentController";
+import TicketController from "../express/controller/TicketController";
+import AdminRouter from "../express/routes/AdminRouter";
 import AppointmentRouter from "../express/routes/AppointmentRouter";
+import TicketRouter from "../express/routes/TicketRouter";
+import MySQLAdminRepository from "../repository/admin/MySQLAdminRepository";
 import MySQLAppointmentRepository from "../repository/appointment/MySQLAppointmentRepository";
 import MySQLCustomerRepository from "../repository/customer/MySQLCustomerRepository";
 import MySQLOfficesRepository from "../repository/offices/MySQLOfficeRepository";
@@ -20,7 +35,7 @@ import InMemoryTicketRepository from "../repository/ticket/InMemoryTicketReposit
 import PriorityQueue from "../repository/ticket/PriorityQueue";
 
 export default class CACUPBFactory {
-  public createRouter(): ExpressRouter {
+  public createRouters(): ExpressRouter[] {
     //MySQL Connection
     const mySqlConnectionConfig = {
       host: "localhost",
@@ -43,9 +58,14 @@ export default class CACUPBFactory {
     const inMemoryTicketRepository = new InMemoryTicketRepository(
       priorityQueue
     );
+    const mySQLAdminRepository = new MySQLAdminRepository(
+      mySqlDBC,
+      mySQLOfficesRepository
+    );
 
     //Helpers
     const pdfCreator = new PDFCreator();
+    const bCrypt = new BCrypt();
 
     //Services
     const customerService = new CustomerService(
@@ -60,6 +80,8 @@ export default class CACUPBFactory {
     );
     const ticketService = new TicketService(
       inMemoryTicketRepository,
+      mySQLAppointmentRepository,
+      mySQLAdminRepository,
       appointmentService
     );
     const validateService = new ValidateService(
@@ -67,6 +89,11 @@ export default class CACUPBFactory {
       mySQLOfficesRepository,
       inMemoryTicketRepository,
       mySQLAppointmentRepository
+    );
+    const adminService = new AdminService(
+      mySQLAdminRepository,
+      mySQLOfficesRepository,
+      bCrypt
     );
 
     //UseCases for Appointments
@@ -90,17 +117,55 @@ export default class CACUPBFactory {
     );
 
     //UseCases for Tickets
-    const 
+    const generateTicketUseCase = new GenerateTicketUseCase(
+      ticketService,
+      validateService
+    );
+    const getQueueByOfficeUseCase = new GetQueueByOfficeUseCase(adminService);
+    const getQueueByOfficeForCustomerUseCase =
+      new GetQueueByOfficeForCustomerUseCase(ticketService, appointmentService);
+    const getTicketByIdUseCase = new GetTicketByIdUseCase(
+      ticketService,
+      validateService
+    );
+    const nextInQueueUseCase = new NextInQueueUseCase(ticketService);
+    const registerTicketUseCase = new RegisterTicketUseCase(ticketService);
+    const validateIdsCheckQueueUseCase = new ValidateIdsCheckQueueUseCase(
+      validateService
+    );
 
-    //Controllers
+    //Use Case for Admin
+    const loginAdminUseCase = new LoginAdminUseCase(adminService);
+
+    //Controller for Appointments
     const appointmentController = new AppointmentController(
       createAppointmentUseCase,
       cancelAppointmentUseCase,
       getNonAttendedAppointmentsUseCase,
       validateIdsChangeAppointmentUseCase,
-      changeAppointmentUseCase
+      changeAppointmentUseCase,
+      getAllAppointmentsUseCase
     );
 
-    return new AppointmentRouter(appointmentController);
+    //Controller for Tickets
+    const ticketController = new TicketController(
+      generateTicketUseCase,
+      getQueueByOfficeForCustomerUseCase,
+      getQueueByOfficeUseCase,
+      getTicketByIdUseCase,
+      nextInQueueUseCase,
+      registerTicketUseCase,
+      validateIdsCheckQueueUseCase
+    );
+
+    //Controller for Admin
+    const adminController = new AdminController(loginAdminUseCase);
+
+    //Routers
+    const appointmentRouter = new AppointmentRouter(appointmentController);
+    const ticketRouter = new TicketRouter(ticketController);
+    const adminRouter = new AdminRouter(adminController);
+
+    return [appointmentRouter, ticketRouter, adminRouter];
   }
 }

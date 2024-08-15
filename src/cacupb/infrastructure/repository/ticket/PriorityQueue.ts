@@ -28,13 +28,13 @@ export default class PriorityQueue implements TicketRepositoryPort {
     return this.queue.get(officeId) || [];
   }
 
-  public addTicket(ticket: Ticket): boolean {
+  public addTicket(ticket: Ticket): Ticket {
     const queue = this.queue.get(ticket.getAppointment().getOffice().getId());
     if (!queue) {
       console.error(
         `Place with ID ${ticket.getAppointment().getOffice().getId()} does not exist`
       );
-      return false;
+      return new NullTicket();
     }
 
     if (queue.length === 0) {
@@ -69,7 +69,7 @@ export default class PriorityQueue implements TicketRepositoryPort {
         queue.push(ticket);
       }
     }
-    return true;
+    return ticket;
   }
 
   public getNextTicket(officeId: number): Ticket {

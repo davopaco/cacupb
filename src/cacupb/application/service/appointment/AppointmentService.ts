@@ -30,12 +30,11 @@ export default class AppointmentService implements AppointmentServicePort {
       customerAppointment.lastName,
       parseInt(customerAppointment.customerId),
       customerAppointment.address,
-      customerAppointment.birthDate,
+      new Date(customerAppointment.birthDate),
       await this.appointmentRepository.getAppointmentsAttendedByCustomer(
         parseInt(customerAppointment.customerId)
       )
     );
-
     const office = await this.officeRepository.getById(
       customerAppointment.place
     );
@@ -49,7 +48,7 @@ export default class AppointmentService implements AppointmentServicePort {
 
     const appointment = new Appointment(
       customer,
-      customerAppointment.date,
+      new Date(customerAppointment.date),
       new Time(customerAppointment.time),
       getAppointmentType(customerAppointment.type),
       0,
@@ -70,7 +69,7 @@ export default class AppointmentService implements AppointmentServicePort {
         customerAppointmentId.lastName,
         parseInt(customerAppointmentId.customerId),
         customerAppointmentId.address,
-        customerAppointmentId.birthDate,
+        new Date(customerAppointmentId.birthDate),
         await this.appointmentRepository.getAppointmentsAttendedByCustomer(
           parseInt(customerAppointmentId.customerId)
         )
@@ -88,7 +87,7 @@ export default class AppointmentService implements AppointmentServicePort {
 
       const appointment = new Appointment(
         customer,
-        customerAppointmentId.date,
+        new Date(customerAppointmentId.date),
         new Time(customerAppointmentId.time),
         getAppointmentType(customerAppointmentId.type),
         parseInt(customerAppointmentId.id),
@@ -120,7 +119,10 @@ export default class AppointmentService implements AppointmentServicePort {
   }
 
   public async getAppointmentById(appointmentId: string): Promise<Appointment> {
-    return await this.appointmentRepository.getById(parseInt(appointmentId));
+    const appointment = await this.appointmentRepository.getById(
+      parseInt(appointmentId)
+    );
+    return appointment;
   }
 
   public async getAllAppointments(): Promise<Appointment[]> {

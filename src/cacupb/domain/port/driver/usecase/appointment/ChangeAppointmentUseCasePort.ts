@@ -1,5 +1,5 @@
-import CustomerAppointment from "../../../../model/web/CustomerAppointment";
+import CustomerAppointmentId from "../../../../model/web/CustomerAppointmentId";
 
 export default interface ChangeAppointmentUseCasePort {
-  execute(customerAppointment: CustomerAppointment): Promise<boolean>;
+  execute(customerAppointmentId: CustomerAppointmentId): Promise<boolean>;
 }

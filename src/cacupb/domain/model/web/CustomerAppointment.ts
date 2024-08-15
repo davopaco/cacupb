@@ -2,10 +2,10 @@ export default interface CustomerAppointment {
   customerId: string;
   name: string;
   lastName: string;
-  birthDate: Date;
+  birthDate: string;
   address: string;
   type: string;
-  date: Date;
+  date: string;
   description: string;
   time: string;
   place: number;

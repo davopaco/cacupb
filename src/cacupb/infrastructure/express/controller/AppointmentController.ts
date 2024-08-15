@@ -5,6 +5,8 @@ import GetNonAttendedAppointmentsUseCasePort from "../../../domain/port/driver/u
 import ValidateIdsChangeAppointmentUseCasePort from "../../../domain/port/driver/usecase/appointment/ValidateIdsChangeUseCasePort";
 import CustomerAppointment from "../../../domain/model/web/CustomerAppointment";
 import ChangeAppointmentUseCasePort from "../../../domain/port/driver/usecase/appointment/ChangeAppointmentUseCasePort";
+import GetAllAppointmentsUseCasePort from "../../../domain/port/driver/usecase/appointment/GetAllAppointmentsUseCasePort";
+import CustomerAppointmentId from "../../../domain/model/web/CustomerAppointmentId";
 
 export default class AppointmentController {
   constructor(
@@ -12,7 +14,8 @@ export default class AppointmentController {
     private readonly cancelAppointmentUseCase: CancelAppointmentUseCasePort,
     private readonly getNonAttendedAppointmentsUseCase: GetNonAttendedAppointmentsUseCasePort,
     private readonly validateIdsChangeAppointmentUseCase: ValidateIdsChangeAppointmentUseCasePort,
-    private readonly changeAppointmentUseCase: ChangeAppointmentUseCasePort
+    private readonly changeAppointmentUseCase: ChangeAppointmentUseCasePort,
+    private readonly getAllAppointmentsUseCase: GetAllAppointmentsUseCasePort
   ) {}
 
   public async createAppointment(req: Request, res: Response): Promise<void> {
@@ -59,8 +62,8 @@ export default class AppointmentController {
     res: Response
   ): Promise<void> {
     const isValid = await this.validateIdsChangeAppointmentUseCase.execute(
-      req.params.customerId,
-      req.params.appointmentId
+      req.body.customerId,
+      req.body.appointmentId
     );
     if (isValid === false) {
       res.status(400).json({ message: "The appointment does not exist" });
@@ -71,12 +74,19 @@ export default class AppointmentController {
 
   public async changeAppointment(req: Request, res: Response): Promise<void> {
     const appointmentChanged = await this.changeAppointmentUseCase.execute(
-      req.body as CustomerAppointment
+      req.body as CustomerAppointmentId
     );
     if (appointmentChanged === false) {
       res.status(400).json({ message: "Error changing the appointment" });
       return;
     }
     res.status(200).json({ message: "Appointment changed" });
+  }
+
+  public async getAllAppointments(_req: Request, res: Response): Promise<void> {
+    const appointments = await this.getAllAppointmentsUseCase.execute();
+    if (appointments.length === 0)
+      res.status(404).json({ message: "No appointments found" });
+    res.status(200).json(appointments);
   }
 }

@@ -1,7 +1,7 @@
 import Ticket from "../../../../model/ticket/Ticket";
 
 export default interface TicketServicePort {
-  generateTicket(appointmentId: string): Promise<boolean>;
+  generateTicket(appointmentId: string): Promise<Ticket>;
   getQueueByOffice(officeId: string): Promise<Ticket[]>;
   getTicketById(ticketId: string, officeId: string): Promise<Ticket>;
   getQueueByAppointmentId(appointmentId: string): Promise<Ticket[]>;

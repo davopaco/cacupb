@@ -17,7 +17,7 @@ export default class InMemoryTicketRepository implements TicketRepositoryPort {
     return this.priorityQueue.getOffice(officeId);
   }
 
-  public addTicket(ticket: Ticket): boolean {
+  public addTicket(ticket: Ticket): Ticket {
     ticket.setId(this.generateTicketNumber());
     return this.priorityQueue.addTicket(ticket);
   }

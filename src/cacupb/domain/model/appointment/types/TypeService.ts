@@ -1,6 +1,6 @@
 export enum TypeService {
   Devolucion = "DEV",
-  Acesoria = "ACE",
+  Acesoria = "ASE",
   Reclamo = "REC",
   NoDefinido = "NULL",
 }

@@ -1,3 +1,12 @@
+.navbar {
+  background-color: #43427c;
+  color: white;
+}
+
+.nav-link {
+  color: white;
+}
+
 .navbar-brand img {
   height: 80px;
 }
@@ -24,7 +33,23 @@
   justify-content: center;
 }
 
+.left button {
+  background-color: #43427c;
+  border: none;
+}
+
+.left button:hover {
+  background-color: #5a599e;
+}
+
 .left h1 {
+  margin-bottom: 20px;
+  color: #6664ba;
+  font-weight: 600;
+}
+
+.form-group input {
+  width: 400px;
   margin-bottom: 20px;
 }
 

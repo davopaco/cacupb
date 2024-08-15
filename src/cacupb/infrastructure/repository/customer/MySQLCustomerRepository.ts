@@ -13,7 +13,6 @@ export default class MySQLCustomerRepository implements CustomerRepositoryPort {
       "SELECT * FROM CLIENTES WHERE ID = ?",
       [id]
     );
-    console.log(result);
     if (!result) {
       console.error("Error getting the customer from the database");
       return new NullCustomer();

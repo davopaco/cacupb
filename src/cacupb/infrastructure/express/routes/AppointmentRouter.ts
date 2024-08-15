@@ -16,9 +16,33 @@ export default class AppointmentRouter implements ExpressRouter {
   }
 
   routes = (): void => {
+    this.router.post(
+      "/appointments/set",
+      this.appointmentController.createAppointment.bind(
+        this.appointmentController
+      )
+    );
+    this.router.post(
+      "/appointments/cancel",
+      this.appointmentController.cancelAppointment.bind(
+        this.appointmentController
+      )
+    );
     this.router.get(
       "/appointments/non-attended",
       this.appointmentController.getNonAttendedAppointments.bind(
+        this.appointmentController
+      )
+    );
+    this.router.post(
+      "/appointments/validate",
+      this.appointmentController.validateIdsChangeAppointment.bind(
+        this.appointmentController
+      )
+    );
+    this.router.post(
+      "/appointments/change",
+      this.appointmentController.changeAppointment.bind(
         this.appointmentController
       )
     );
